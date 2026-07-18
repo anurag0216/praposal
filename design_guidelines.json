@@ -1,0 +1,113 @@
+{
+  "theme_strategy": {
+    "mode": "dark",
+    "rationale": "A romantic, deeply cinematic experience requires a moody 'Luxury Romantic' theme. Using a deep crimson-black background rather than flat black creates an intimate, velvety atmosphere where glowing red and rose-gold elements can pop beautifully."
+  },
+  "typography": {
+    "headings": {
+      "font": "Cormorant Garamond, serif",
+      "classes": "font-serif tracking-tight font-light",
+      "rationale": "Cormorant Garamond provides an elegant, sweeping, and profoundly romantic aesthetic reminiscent of classic love letters and luxury editorial."
+    },
+    "body": {
+      "font": "Outfit, sans-serif",
+      "classes": "font-sans leading-relaxed font-light tracking-wide",
+      "rationale": "A clean, modern geometric sans-serif to contrast the classic serif, ensuring legibility while maintaining a soft, approachable feel."
+    },
+    "special": {
+      "font": "Dancing Script, cursive",
+      "classes": "font-script",
+      "rationale": "Used explicitly for the engraved 'A & S' logo and signature moments in the acceptance love letter."
+    }
+  },
+  "colors": {
+    "background": "#0C0507",
+    "foreground": "#FBE8E9",
+    "primary": "#E11D48",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#2A0A13",
+    "accent": "#F43F5E",
+    "surface_glass": "rgba(20, 5, 10, 0.6)",
+    "rules": [
+      "NEVER use pure #000000 or #FFFFFF. Use the rose-tinted off-white (#FBE8E9) for text.",
+      "Text in the acceptance letter MUST be colorful (gradients of rose gold, pink, and vibrant red), absolutely NO plain white text.",
+      "Background should be a deep velvet burgundy-black (#0C0507)."
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": "Use High-end Glassmorphism for the Proposal Cards: backdrop-blur-2xl, bg-black/40, with a delicate 1px inner border of border-rose-500/20.",
+    "textures": "Subtle noise/grain overlay across the entire site to remove the 'digital' feel and make it feel like cinematic film.",
+    "shapes": "Heart motifs subtly integrated into button shapes, masking for images, and floating particles.",
+    "glows": "Soft drop-shadow glows around the main Heart and the YES button (e.g., drop-shadow-[0_0_20px_rgba(225,29,72,0.6)])."
+  },
+  "components": {
+    "HeartHero": "A massive, beautiful beating heart center-screen on load. Uses a glowing red gradient. Engraved 'A & S' in cursive font inside. Must have a heartbeat scale animation. On click, it triggers a dramatic Framer Motion layout shift/scale-up revealing the proposal.",
+    "ProposalCard": "Glassmorphism card that contains the 'love story' paragraph. Immersive, layered above the background.",
+    "PhotoSlider": "Auto-rotating carousel on a 10s timer (use Framer Motion AnimatePresence). Each slide contains a photo of Shree and a romantic compliment overlaid at the bottom.",
+    "ActionButtons": "YES button: Pulses gently, prominent, bright vibrant red/pink gradient. NO button: Uses onMouseEnter event combined with Framer Motion to randomly set x/y translation boundaries so it literally dodges the cursor playfully and can never be clicked.",
+    "CelebrationScreen": "Triggered after YES. Triggers 'react-confetti' (customized to heart shapes if possible, or red/pink/gold colors). Shows the vibrant colorful love letter.",
+    "InstagramMessenger": "A sleek, glass-styled textarea input. 'Send Message' button opens Instagram DM using `window.open('https://ig.me/m/anuragchoudhary_02', '_blank')` and utilizes `navigator.clipboard.writeText()` to copy the message so she can easily paste it."
+  },
+  "grids_and_layouts": {
+    "hero": "h-screen w-full flex items-center justify-center relative overflow-hidden",
+    "card_layout": "Max-width of 2xl, generously padded (p-8 md:p-12), centered, layered over a blurred animated background.",
+    "photo_slider": "Aspect ratio 3/4 or 4/5 for portraits. Rounded-2xl or masked into a subtle heart/arch shape."
+  },
+  "motion": {
+    "libraries": ["framer-motion", "lucide-react", "react-confetti"],
+    "hero_heartbeat": "Infinite scale sequence [1, 1.05, 1, 1] with easeInOut to mimic a real pulse.",
+    "card_reveal": "Initial y: 50, opacity: 0, scale: 0.9. Animate to y: 0, opacity: 1, scale: 1 with a spring transition (stiffness: 100, damping: 20).",
+    "evasive_button": "Framer motion `animate={{ x: noBtnPosition.x, y: noBtnPosition.y }}` updated on mouse hover.",
+    "slider_transition": "Slide in from right, exit to left, subtle scale down on exit."
+  },
+  "media": {
+    "audio": "Embed a hidden YouTube iframe. Love Story (Taylor Swift): `https://www.youtube.com/embed/8xg3vE8Ie_E?autoplay=1&loop=1&enablejsapi=1`. On 'Yes', switch src to another romantic song (e.g., Perfect by Ed Sheeran `https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1`). Note: Browsers require user interaction to autoplay audio, which perfectly aligns with the 'Click the Heart to open' action!",
+    "image_urls": {
+      "shree_photo_placeholders": [
+        {
+          "url": "https://images.unsplash.com/photo-1746093363964-fb553a5f3323?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHw0fHxiZWF1dGlmdWwlMjB3b21hbiUyMHNtaWxpbmclMjBhZXN0aGV0aWMlMjBzdW5zZXR8ZW58MHx8fHwxNzg0NDE1ODI5fDA&ixlib=rb-4.1.0&q=85",
+          "description": "Beautiful woman smiling at sunset (Placeholder for Shree)",
+          "category": "slider_images"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1746093154128-dd3907edcfed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwzfHxiZWF1dGlmdWwlMjB3b21hbiUyMHNtaWxpbmclMjBhZXN0aGV0aWMlMjBzdW5zZXR8ZW58MHx8fHwxNzg0NDE1ODI5fDA&ixlib=rb-4.1.0&q=85",
+          "description": "Woman frolics in golden hour field (Placeholder for Shree)",
+          "category": "slider_images"
+        }
+      ],
+      "background_elements": [
+        {
+          "url": "https://images.pexels.com/photos/32334368/pexels-photo-32334368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "description": "Red rose bloom falling dark background",
+          "category": "ambient_background"
+        }
+      ]
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure the rose-tinted text on the dark burgundy background passes APCA readability tests. Avoid extremely thin font weights for the body text.",
+    "motion": "Respect `prefers-reduced-motion` for the evasive button—if reduced motion is enabled, maybe just disable the NO button entirely or fade it out, rather than darting around.",
+    "audio": "Ensure there is a subtle, elegant volume/mute toggle visible somewhere in a corner so she can control the music if needed."
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: `yarn add framer-motion react-confetti lucide-react`.",
+    "CRITICAL: Do NOT use standard flat black (#000) or pure white (#fff). Use the defined rich burgundy/rose-gold palette.",
+    "CRITICAL: The Acceptance love letter text MUST be vibrant and colorful (e.g., using a text-transparent bg-clip-text gradient of pink, gold, and red), strictly no plain white.",
+    "CRITICAL: The NO button must never disappear. It must use a hover event to calculate a new random X/Y coordinate within a constrained radius and animate there smoothly.",
+    "CRITICAL: Implement the Audio player creatively. Since autoplay requires a user gesture, initialize/play the YouTube hidden iframe exactly when she clicks the main 'A & S' Heart on the first screen.",
+    "CRITICAL: Instagram feature must use `navigator.clipboard.writeText(message)` followed by `window.open('https://ig.me/m/anuragchoudhary_02', '_blank')` so she can paste the message immediately in the app.",
+    "CRITICAL: Remove all 'Made with Emergent' branding.",
+    "Apply heart motifs natively using SVGs. The main hero heart should be a beautifully crafted SVG with a gradient fill and a drop-shadow glow.",
+    "Do not build generic Shadcn cards. Use raw HTML/Tailwind to build custom, highly artistic glassmorphism cards as per the E1 anti-pattern rules.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid the 'AI slop' aesthetic. Make it extremely beautiful, romantic, and cinematic.",
+    "Create depth through layered design elements with z-index hierarchy (e.g., background rose imagery, grain overlay, glassmorphism cards).",
+    "Use glass-morphism effects with backdrop filters (12-24px blur, high saturation) for the proposal cards.",
+    "You MUST NOT apply universal transitions like `transition: all`.",
+    "NEVER use complete transparent backgrounds under text. Use a dark scrim or glassmorphism.",
+    "No emojis as icons. Use lucide-react icons if needed (e.g., for the mute button or send icon).",
+    "Always use optical alignment over geometrical alignment."
+  ]
+}
