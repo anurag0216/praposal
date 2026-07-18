@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, Mail } from "lucide-react";
 import { FloatingHearts } from "./FloatingHearts";
 import { InstagramBox } from "./InstagramBox";
+import { Dialog, DialogContent } from "./ui/dialog";
 import { LETTER, HER_NAME, MY_INITIAL } from "../data";
 
 const drawHeart = (ctx) => {
@@ -21,14 +22,17 @@ const drawHeart = (ctx) => {
 export const Celebration = () => {
   const [size, setSize] = useState({ w: window.innerWidth, h: window.innerHeight });
   const [pieces, setPieces] = useState(320);
+  const [igOpen, setIgOpen] = useState(false);
 
   useEffect(() => {
     const onResize = () => setSize({ w: window.innerWidth, h: window.innerHeight });
     window.addEventListener("resize", onResize);
     const slow = setTimeout(() => setPieces(90), 6500); // ease off after the burst
+    const nudge = setTimeout(() => setIgOpen(true), 5500); // Instagram popup after a few seconds
     return () => {
       window.removeEventListener("resize", onResize);
       clearTimeout(slow);
+      clearTimeout(nudge);
     };
   }, []);
 
@@ -95,10 +99,35 @@ export const Celebration = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.1, duration: 0.8 }}
-        className="relative w-full"
+        className="relative mt-10 flex w-full justify-center"
       >
-        <InstagramBox />
+        <button
+          type="button"
+          onClick={() => setIgOpen(true)}
+          data-testid="open-ig-btn"
+          className="flex items-center gap-2 rounded-full border border-rose-300/40 bg-black/30 px-8 py-3.5 font-serif text-lg text-[#f7b8c6] backdrop-blur transition-transform hover:scale-105"
+        >
+          <Mail size={20} />
+          Send {MY_INITIAL} a little message
+        </button>
       </motion.div>
+
+      <Dialog open={igOpen} onOpenChange={setIgOpen}>
+        <DialogContent
+          data-testid="ig-popup"
+          className="max-w-lg border border-rose-300/30 bg-[#160610] p-6 sm:rounded-3xl [&>button]:text-[#f7b8c6] [&>button]:opacity-80"
+        >
+          <div className="text-center">
+            <h3 className="font-script text-3xl love-gradient font-bold">
+              One more little thing…
+            </h3>
+            <p className="mt-1 font-serif italic text-[#f7b8c6]">
+              Will you send me a message on Instagram, {HER_NAME}? 💌
+            </p>
+          </div>
+          <InstagramBox />
+        </DialogContent>
+      </Dialog>
     </motion.section>
   );
 };

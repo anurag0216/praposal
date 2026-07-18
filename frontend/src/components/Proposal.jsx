@@ -1,17 +1,28 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { FloatingHearts } from "./FloatingHearts";
 import { PhotoSlider } from "./PhotoSlider";
 import { LOVE_STORY, HER_NAME } from "../data";
 
+const NO_MESSAGES = [
+  "Nice try 😄 that little button is far too shy…",
+  "Oops! It keeps running away from you 🏃‍♀️💨",
+  "The 'No' doesn't work today, my love 💕",
+  "Are you sure? Because my heart says otherwise 💖",
+  "Catch it if you can… but you never will 😉",
+  "Only 'Yes' is allowed to live on this page 🥰",
+  "Even the button knows we're meant to be 💘",
+];
+
 // Evasive NO button — it only playfully dodges, it never disappears.
-const NoButton = () => {
+const NoButton = ({ onDodge }) => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const dodge = () => {
     const x = (Math.random() - 0.5) * 260;
     const y = (Math.random() - 0.5) * 180;
     setPos({ x, y });
+    onDodge?.();
   };
   return (
     <motion.button
@@ -33,6 +44,8 @@ const NoButton = () => {
 };
 
 export const Proposal = ({ onYes }) => {
+  const [noTries, setNoTries] = useState(0);
+  const noMessage = noTries > 0 ? NO_MESSAGES[(noTries - 1) % NO_MESSAGES.length] : "";
   return (
     <motion.section
       key="proposal"
@@ -130,7 +143,25 @@ export const Proposal = ({ onYes }) => {
             Yes, I will
             <Heart size={24} fill="#fff" strokeWidth={0} />
           </motion.button>
-          <NoButton />
+          <NoButton onDodge={() => setNoTries((n) => n + 1)} />
+        </div>
+
+        <div className="mt-8 flex min-h-[2.5rem] items-center justify-center">
+          <AnimatePresence mode="wait">
+            {noMessage && (
+              <motion.p
+                key={noTries}
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35 }}
+                className="font-serif italic text-lg sm:text-xl text-[#f7b8c6]"
+                data-testid="no-message"
+              >
+                {noMessage}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.section>

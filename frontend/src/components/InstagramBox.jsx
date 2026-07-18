@@ -28,7 +28,7 @@ export const InstagramBox = () => {
 
   return (
     <div
-      className="mx-auto mt-10 w-full max-w-lg rounded-3xl border border-rose-300/25 bg-black/30 p-6 backdrop-blur-xl"
+      className="mx-auto mt-4 w-full max-w-lg rounded-3xl border border-rose-300/25 bg-black/30 p-6 backdrop-blur-xl"
       data-testid="instagram-box"
     >
       <div className="flex items-center justify-center gap-2 text-[#f7b8c6]">
