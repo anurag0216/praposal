@@ -18,7 +18,7 @@ export const PhotoSlider = () => {
   useEffect(() => {
     const t = setInterval(() => go(1), AUTO_MS); // moves by itself
     return () => clearInterval(t);
-  }, [go]);
+  }, [go, index]);
 
   const card = PHOTO_CARDS[index];
 
