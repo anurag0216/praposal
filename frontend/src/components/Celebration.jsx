@@ -5,7 +5,7 @@ import { Heart, Mail } from "lucide-react";
 import { FloatingHearts } from "./FloatingHearts";
 import { InstagramBox } from "./InstagramBox";
 import { Dialog, DialogContent } from "./ui/dialog";
-import { LETTER, HER_NAME, MY_INITIAL } from "../data";
+import { LETTER, HER_NAME, MY_NAME } from "../data";
 
 const drawHeart = (ctx) => {
   const s = 7;
@@ -90,7 +90,7 @@ export const Celebration = () => {
         ))}
         <p className="mt-8 flex items-center justify-center gap-3 text-center font-script text-2xl sm:text-3xl love-gradient font-bold">
           <Heart size={22} className="text-rose-500" fill="#f43f5e" strokeWidth={0} />
-          Yours, from the very first heartbeat — {MY_INITIAL}.
+          Yours, from the very first heartbeat — {MY_NAME}.
           <Heart size={22} className="text-rose-500" fill="#f43f5e" strokeWidth={0} />
         </p>
       </motion.div>
@@ -108,7 +108,7 @@ export const Celebration = () => {
           className="flex items-center gap-2 rounded-full border border-rose-300/40 bg-black/30 px-8 py-3.5 font-serif text-lg text-[#f7b8c6] backdrop-blur transition-transform hover:scale-105"
         >
           <Mail size={20} />
-          Send {MY_INITIAL} a little message
+          Send {MY_NAME} a little message
         </button>
       </motion.div>
 

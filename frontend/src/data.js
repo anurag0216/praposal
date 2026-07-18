@@ -6,6 +6,7 @@
 
 export const HER_NAME = "Shree";
 export const MY_INITIAL = "A";
+export const MY_NAME = "Anurag";
 export const INSTAGRAM_USERNAME = "anuragchoudhary_02";
 
 // Hidden background songs (YouTube video IDs)
@@ -53,4 +54,4 @@ export const LETTER = [
 
 // Pre-filled message Shree can edit before sending to your Instagram
 export const DEFAULT_IG_MESSAGE =
-  "A, I just saw this and my heart is so full 💕 Yes, a thousand times yes — I want to be yours. I love you.";
+  "Anurag, I just saw this and my heart is so full 💕 Yes, a thousand times yes — I want to be yours. I love you.";
