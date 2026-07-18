@@ -1,34 +1,132 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* ===== Fonts ===== */
+.font-serif { font-family: "Cormorant Garamond", serif; }
+.font-script { font-family: "Dancing Script", cursive; }
+.font-sans { font-family: "Outfit", sans-serif; }
+
+/* ===== Grain overlay ===== */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* ===== Gold engraved text ===== */
+.gold-text {
+  background: linear-gradient(180deg, #fff4c8 0%, #f5d061 38%, #b8860b 62%, #7a5a10 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55));
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* ===== Rose/gold letter text ===== */
+.love-gradient {
+  background: linear-gradient(120deg, #ffd9a0 0%, #ff5c8a 45%, #e11d48 75%, #ffb86c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.App-link {
-    color: #61dafb;
+/* ===== 3D Heart ===== */
+.heart-wrap {
+  position: relative;
+  width: min(74vw, 340px);
+  height: min(74vw, 340px);
+  filter: drop-shadow(0 0 55px rgba(225, 29, 72, 0.55))
+    drop-shadow(0 0 130px rgba(244, 63, 94, 0.35));
+}
+.heart-3d {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+.heart-3d,
+.heart-3d::before,
+.heart-3d::after {
+  width: 71%;
+  height: 71%;
+  background:
+    radial-gradient(circle at 32% 28%, #ff6b95 0%, #e11d48 40%, #9c0f34 74%, #5c0620 100%);
+}
+.heart-3d {
+  left: 14.5%;
+  top: 22%;
+  border-radius: 6px 0 0 0;
+}
+.heart-3d::before,
+.heart-3d::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.heart-3d::before { top: -50%; left: 0; }
+.heart-3d::after { left: 50%; top: 0; }
+
+.heart-mono {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4%;
+  z-index: 5;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* ===== Glass proposal card ===== */
+.glass-card {
+  background: linear-gradient(160deg, rgba(255, 240, 243, 0.97), rgba(255, 224, 232, 0.9));
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  border-radius: 28px;
+  box-shadow:
+    0 30px 80px -30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.glass-card.dashed {
+  outline: 2px dashed rgba(225, 29, 72, 0.3);
+  outline-offset: -14px;
+}
+
+/* ===== Letter (warm gold) ===== */
+.letter-card {
+  background: linear-gradient(155deg, #fff7e6 0%, #ffe6c9 55%, #ffd5b0 100%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 28px;
+  box-shadow:
+    0 40px 100px -30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.letter-card.dashed { outline: 2px dashed rgba(212, 175, 55, 0.45); outline-offset: -14px; }
+
+/* ===== Floating hearts ===== */
+.float-heart {
+  position: absolute;
+  bottom: -40px;
+  color: #e11d48;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.85; }
+  100% { transform: translateY(-108vh) scale(1.05) rotate(30deg); opacity: 0; }
+}
+
+/* ===== Yes button ===== */
+.yes-btn {
+  background: linear-gradient(180deg, #ff5c8a 0%, #e11d48 60%, #b30d34 100%);
+  box-shadow: 0 0 28px rgba(225, 29, 72, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.tap-hint { animation: tapPulse 1.8s ease-in-out infinite; }
+@keyframes tapPulse {
+  0%, 100% { opacity: 0.65; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(3px); }
 }
